@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Tapa</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script type="text/javascript" src="{% static 'js/jquery-1.3.2.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/cambiartexto.js' %}"></script>
+    </head>
+
+    <body>
+        {% if tapa %}
+        <h1>{{ tapa_name }}</h1>
+            {% if bar %}
+            <ul>
+                {% for b in bar %}
+                <li><a href="/rango/tapa/{{tapa.slug}}/bar/{{b.nombre_bar}}/">{{ b.nombre_bar }}, {{b.direccion}} --- {{b.n_visitas}} visitas</a></li>
+                {% endfor %}
+
+                  <br><p>AÑADE UN BAR DONDE SIRVAN ESTA TAPA </p>
+                  <li><a href="/rango/tapa/{{ tapa.slug }}/add_bar/">Añadir bar</a></li><br>
+                  <li><a href="/rango/">Inicio</a></li><br>
+
+            </ul>
+            {% else %}
+                <strong>No hay bares encontrados con esta tapa.</strong>
+                <li><a href="/rango/tapa/{{ tapa.slug }}/add_bar/">Añadir bar</a></li><br>
+                <li><a href="/rango/">Inicio</a></li><br>
+            {% endif %}
+        {% else %}
+            The specified category {{ tapa_name }} does not exist!
+        {% endif %}
+
+        <div id="botones">
+          <div class="boton" id="aumentar">Texto Grande</div>
+          <div class="boton">Texto Normal</div>
+          <div class="boton" id="disminuir">Texto Chico</div>
+        </div>
+    </body>
+</html>

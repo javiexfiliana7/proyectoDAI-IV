@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Bar</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script type="text/javascript" src="{% static 'js/jquery-1.3.2.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/cambiartexto.js' %}"></script>
+    </head>
+
+    <body>
+        <h1>Añade bar</h1>
+
+        <form class="span6" id="bar_form" method="post" action="/rango/tapa/{{ tapa.slug }}/add_bar/">
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+            {{ field.errors }}<br/>
+            {{ field.help_text}}
+            {{ field }}
+            {% endfor %}
+            <br/>
+            <input class="btn btn-primary" type="submit" name="submit" value="Crear bar"/>
+        </form>
+
+        <div id="botones">
+          <div class="boton" id="aumentar">Texto Grande</div>
+          <div class="boton">Texto Normal</div>
+          <div class="boton" id="disminuir">Texto Chico</div>
+        </div>
+    </body>
+
+</html>

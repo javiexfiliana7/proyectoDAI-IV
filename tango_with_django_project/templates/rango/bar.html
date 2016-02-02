@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load easy_maps_tags %}
+<html>
+    <head>
+        <title>Tapa</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script type="text/javascript" src="{% static 'js/jquery-1.3.2.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/cambiartexto.js' %}"></script>
+    </head>
+
+    <body>
+    {% if bar %}
+        <ul>
+              {{bar.nombre_bar}}----{{ votos_bar }} <span class="glyphicon glyphicon-thumbs-up"></span>
+              <br>direccion: {{bar.direccion}}
+          </li>
+
+        </ul>
+      {%else%}
+          <strong>No hay bares con esta tapa</strong>
+      {% endif %}
+
+
+
+        <div id="botones">
+          <div class="boton" id="aumentar">Texto Grande</div>
+          <div class="boton">Texto Normal</div>
+          <div class="boton" id="disminuir">Texto Chico</div>
+        </div>
+
+
+    </body>
+</html>

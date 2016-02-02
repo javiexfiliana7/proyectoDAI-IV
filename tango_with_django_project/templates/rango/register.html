@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Registro</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script type="text/javascript" src="{% static 'js/jquery-1.3.2.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/cambiartexto.js' %}"></script>
+    </head>
+
+    <body>
+        <h1>Registrate</h1>
+
+        {% if registered %}
+        <strong>Gracias por registrarte!</strong>
+        <a href="/rango/">Vuelve al homepage.</a><br />
+        {% else %}
+        <strong>Registrate aquí!</strong><br />
+
+        <form id="user_form" method="post" action="/rango/register/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <!-- Display each form. The as_p method wraps each element in a paragraph
+                 (<p>) element. This ensures each element appears on a new line,
+                 making everything look neater. -->
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+
+            <!-- Provide a button to click to submit the form. -->
+            <input type="submit" name="submit" value="Register" />
+        </form>
+        {% endif %}
+    </body>
+
+    <div id="botones">
+      <div class="boton" id="aumentar">Texto Grande</div>
+      <div class="boton">Texto Normal</div>
+      <div class="boton" id="disminuir">Texto Chico</div>
+    </div>
+
+    </html>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+      <title>Tapas</title>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <script type="text/javascript" src="{% static 'js/jquery-1.3.2.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/cambiartexto.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/grafica.js' %}"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+      {% if user.is_authenticated %}
+      <h1>Hola {{ user.username }} selecciona la tapa para ver donde la sirven!</h1>
+      {% else %}
+      <h1>Hola, selecciona la tapa para ver donde la sirven!</h1>
+      {% endif %}
+
+      {% if tapas %}
+            <ul>
+                {% for tapa in tapas %}
+                <!-- Following line changed to add an HTML hyperlink -->
+                <li><a href="/rango/tapa/{{ tapa.slug }}/">{{ tapa.nombre_tapa }}, {{tapa.votos}}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No hay tapas presentes.</strong>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <a href="/rango/add_tapa/">Añade una neva tapa</a><br />
+        <a href="/rango/logout/">Logout</a><br />
+        {% else %}
+        <a href="/rango/register/">Registrate</a><br />
+        <a href="/rango/login/">Logueate</a><br />
+        {% endif %}
+
+
+        <div id="botones">
+          <div class="boton" id="aumentar">Texto Grande</div>
+          <div class="boton">Texto Normal</div>
+          <div class="boton" id="disminuir">Texto Chico</div>
+        </div>
+
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+
+        <script type="text/javascript">
+                $(function(){
+                        $.ajax({
+                            url: "{% url 'reclama_datos' %}",
+                            type: "get",
+                            success: function(datos){
+                                Visualiza_datos(datos);
+                            },
+                            failure: function(datos){
+                                alert('No se pueden visualizar los datos');
+                            }
+                        });
+                    });
+
+        </script>
+
+        <div id="container" style="height: 300px"></div>
+
+    </body>
+</html>
