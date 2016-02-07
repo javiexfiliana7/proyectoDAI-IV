@@ -1,0 +1,17 @@
+- hosts: amazon
+  sudo: yes
+  remote_user: ubuntu
+  tasks:
+  - name: Instalar paquetes 
+    apt: name=python-setuptools state=present
+    apt: name=build-essential state=present
+    apt: name=python-dev state=present
+    apt: name=git state=present
+  - name: Obtener aplicacion de git
+    command: git clone https://github.com/javiexfiliana7/proyectoDAI-IV.git
+  - name: Permisos de ejecucion
+    command: chmod -R +x Tiendas
+  - name: Instalar requisitos
+    command: sudo pip install -r tango_with_django_project/requirements.txt
+  - name: ejecutar
+    command: nohup sudo python tango_with_django_project/manage.py runserver 0.0.0.0:80
