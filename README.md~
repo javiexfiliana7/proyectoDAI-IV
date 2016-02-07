@@ -19,7 +19,7 @@ La plataforma albergará un foro donde poder opinar sobre las diferentes transac
 Este módulo se centrará en los servicios que el servidor de nuestro sistema web va a ofrecer. Conectaremos la aplicación con la base de datos, se procesarán todo lo relacionado con usuarios, anuncios, ventas, etc.. Y despliegue y configuración de la palicación. Usaremos Flask.
 
 ##Segundo hito
-[![Build Status](https://travis-ci.org/javiexfiliana7/proyectoDAI-IV.svg?branch=master)](https://travis-ci.org/javiexfiliana7/proyectoDAI-IV)
+[![Build Status](https://travis-ci.org/javiexfiliana7/submodulo-javi.svg?branch=master)](https://travis-ci.org/javiexfiliana7/submodulo-javi)
 
 
 ##Herramienta de construcción:
@@ -91,7 +91,7 @@ script:
 
 Saldrá algo así:
 
-![travis](1-readme)
+![travis](http://i63.tinypic.com/2pza06q.png)
 
 
 ## Despliegue en un Paas
